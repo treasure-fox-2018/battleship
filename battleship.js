@@ -1,13 +1,15 @@
 // Your code here
 
-var boardArr = [];
+var boardArr = []; //create global variable boardArr that can accessed by all function lol
 
-for (let i = 0 ; i < 10 ; i++) {
-  if (boardArr[i] === undefined) {
-    boardArr.push([]);
-  }
-  for (let j = 0 ; j < 10 ; j++) {
-    boardArr[i].push('x');  
+function createArr () {
+  for (let i = 0 ; i < 10 ; i++) {
+    if (boardArr[i] === undefined) {
+      boardArr.push([]);
+    }
+    for (let j = 0 ; j < 10 ; j++) {
+      boardArr[i].push(' ');  
+    }
   }
 }
 
@@ -29,4 +31,7 @@ function printBoard() {
 
 }
 
+createArr();
 printBoard();
+
+
