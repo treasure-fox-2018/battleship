@@ -10,7 +10,7 @@ var shipBoard = [];
 for (let i = 1; i <= 10; i++) {
   var shipMap = [];
   for (let j = 0; j < 10; j++) {
-    shipMap.push(`${alphabet[j]}${i}`);
+    shipMap.push(``);
   }
   shipBoard.push(shipMap);
 }
@@ -26,6 +26,9 @@ for (let i = 0; i < shipsArr.length; i++) {
   var shipSize = shipsArr[i].size;
   var shipType = shipsArr[i].type;
 }
+
+var jumlahShip = shipsArr.length;
+
 
 
 
@@ -51,67 +54,82 @@ function print_line(){
 function ship_placement(){
   var indexRow = randomize();
   var indexCol = randomize();
-  var target = shipBoard[randomize()][randomize()];
-  if (shipBoard[indexRow][indexCol] !== '') {
     for (let i = 0; i < shipsArr.length; i++) {
-      if (checkUp(indexRow, indexCol, shipsArr[i].size)) {
-        for (let i = 0; i < shipsArr[i].size ; i++) {
-          shipBoard[indexRow][indexCol+i] += 'asd';
-        }
-      }else if (checkDown(indexRow, indexCol, shipsArr[i].size)) {
-        for (let i = 0; i < shipsArr[i].size ; i++) {
-          shipBoard[indexRow][indexCol-i] += 'asd';
-        }
-      }else if (checkUp(indexRow, indexCol, shipsArr[i].size)) {
-        for (let i = 0; i < shipsArr[i].size ; i++) {
-          shipBoard[indexRow+i][indexCol] += 'asd';
-        }
-      }else if (checkUp(indexRow, indexCol, shipsArr[i].size)) {
-        for (let i = 0; i < shipsArr[i].size ; i++) {
-          shipBoard[indexRow-i][indexCol] += 'asd';
+      var target = shipBoard[randomize()][randomize()];
+      if (shipBoard[indexRow][indexCol] === '' ) {
+        if (checkUp(indexRow, indexCol, shipsArr[i].size)) {
+          for (let j = 0; j < shipsArr[j].size ; j++) {
+            shipBoard[indexRow-j][indexCol] += 'U';
+          }
+        }else if (checkDown(indexRow, indexCol, shipsArr[i].size)) {
+          for (let j = 0; j < shipsArr[j].size ; j++) {
+            shipBoard[indexRow+j][indexCol] += 'D';
+          }
+        }else if (checkLeft(indexRow, indexCol, shipsArr[i].size)) {
+          for (let j = 0; j < shipsArr[j].size ; j++) {
+            shipBoard[indexRow][indexCol-j] += 'L';
+          }
+        }else if (checkRight(indexRow, indexCol, shipsArr[i].size)) {
+          for (let j = 0; j < shipsArr[j].size ; j++) {
+            shipBoard[indexRow][indexCol+j] += 'R';
+          }
         }
       }
     }
-  }
+  return shipBoard;
 }
 
-function checkUp(indexRow,indexCol,shipLength){
+function checkUp(indexR,indexC,shipLength){
+  var checker = false;
   for (let i = 0; i < shipLength; i++) {
-    if (shipBoard[indexRow][indexCol+i] !== '' || shipBoard[indexRow][indexCol+i] !== undefined ) {
-      return true;
+    if (shipBoard[indexR-i] === undefined) {
+      checker = false
+    }else if (shipBoard[indexR-i][indexC] === '') {
+      checker = true;
     }
   }
-  return false;
+  return checker;
 }
 
-function checkDown(indexRow,indexCol,shipLength){
+function checkDown(indexR,indexC,shipLength){
+  var checker = false;
   for (let i = 0; i < shipLength; i++) {
-    if (shipBoard[indexRow][indexCol-i] !== '' || shipBoard[indexRow][indexCol+i] !== undefined ) {
-      return true;
+    if (shipBoard[indexR+i] === undefined) {
+      checker = false
+    }else if (shipBoard[indexR+i][indexC] === '') {
+      checker = true;
     }
   }
-  return false;
+  return checker;
 }
 
-function checkLeft(indexRow,indexCol,shipLength){
+function checkLeft(indexR,indexC,shipLength){
+  var checker = false;
   for (let i = 0; i < shipLength; i++) {
-    if (shipBoard[indexRow-i][indexCol] !== '' || shipBoard[indexRow][indexCol+i] !== undefined ) {
-      return true;
+    if (shipBoard[indexC-i] === undefined) {
+      checker = false
+    }else if (shipBoard[indexR][indexC-i] === '') {
+      checker = true;
     }
   }
-  return false;
+  return checker;
 }
 
-function checkRight(indexRow,indexCol,shipLength){
+function checkRight(indexR,indexC,shipLength){
+  var checker = false;
   for (let i = 0; i < shipLength; i++) {
-    if (shipBoard[indexRow+i][indexCol] !== '' || shipBoard[indexRow][indexCol+i] !== undefined ) {
-      return true;
+    if (shipBoard[indexC+i] === undefined) {
+      checker = false
+    }else if (shipBoard[indexR][indexC+i] === '') {
+      checker = true;
     }
   }
-  return false;
+  return checker;
 }
 
 
 function randomize(){
   return Math.floor(Math.random()*shipBoard.length);
 }
+
+console.log(ship_placement());
