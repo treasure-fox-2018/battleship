@@ -22,3 +22,5 @@ A sample board for visualization/testing purposes:
    |---|---|---|---|---|---|---|---|---|---|
 10 |   |   |   |   |   |   |   |   |   |   |
    +---------------------------------------+
+
+battleships.js X4,A5
