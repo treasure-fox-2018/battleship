@@ -23,14 +23,14 @@ function randomizeEnemyShipPosition() {
     var symbol = arrShipsSymbol[q];
 
     var booleanShipExistence = false;
-    // while (booleanShipExistence !== true) {
+    while (booleanShipExistence !== true) {
 
       var horizontalValues = "012345678";
       var horizontalIndex = +horizontalValues.charAt(Math.trunc(Math.random() * horizontalValues.length));
       var verticalValues = "0123456789";
       var verticalIndex = +verticalValues.charAt(Math.trunc(Math.random() * verticalValues.length));
       // var arrShipStartingPosition = [horizontalIndex, verticalIndex];
-      // console.log(verticalIndex, horizontalIndex);
+      console.log(verticalIndex, horizontalIndex);
 
       var arrShipStackDirection = [ "Up", "Down", "Right", "Left"]
       var k = 0;
@@ -38,33 +38,33 @@ function randomizeEnemyShipPosition() {
         var currentDirection = arrShipStackDirection[k];
         if (currentDirection === "Up") {
           if (checkUp(verticalIndex, horizontalIndex, arrBoard, length)) {
-            // console.log("Up");
+            console.log("Up");
             arrBoard = writeUp(arrBoard, verticalIndex, horizontalIndex, symbol, length);
             booleanShipExistence = true
           }
         } else if (currentDirection === "Down") {
           if (checkDown(verticalIndex, horizontalIndex, arrBoard, length)) {
-            // console.log("Down");
+            console.log("Down");
             arrBoard = writeDown(arrBoard, verticalIndex, horizontalIndex, symbol, length);
             booleanShipExistence = true
           }
         } else if (currentDirection === "Right") {
           if (checkRight(verticalIndex, horizontalIndex, arrBoard, length)) {
-            // console.log("Right");
+            console.log("Right");
             arrBoard = writeRight(arrBoard, verticalIndex, horizontalIndex, symbol, length);
             booleanShipExistence = true
           }
         } else if (currentDirection === "Left") {
           if (checkLeft(verticalIndex, horizontalIndex, arrBoard, length)) {
-            // console.log("Left");
+            console.log("Left");
             arrBoard = writeLeft(arrBoard, verticalIndex, horizontalIndex, symbol, length);
             booleanShipExistence = true
           }
         }
-        // console.log(k);
+        console.log(k);
         k++;
       }
-    // }
+    }
   }
 
   return arrBoard;
@@ -106,11 +106,11 @@ function checkUp(indexY, indexX, arr, length) {
     }
     var inspector = arr[indexY + i][indexX];
     if (inspector !== "" || inspector === undefined) {
-      // console.log("upFalse");
+      console.log("upFalse");
       return false;
     }
   }
-  // console.log("upTrue");
+  console.log("upTrue");
   return true;
 }
 
@@ -125,7 +125,7 @@ function checkDown(indexY, indexX, arr, length) {
       return false;
     }
   }
-  // console.log("downTrue");
+  console.log("downTrue");
   return true;
 }
 
@@ -140,7 +140,7 @@ function checkRight(indexY, indexX, arr, length) {
       return false;
     }
   }
-  // console.log("rightTrue");
+  console.log("rightTrue");
   return true;
 }
 
@@ -155,7 +155,7 @@ function checkLeft(indexY, indexX, arr, length) {
       return false;
     }
   }
-  // console.log("leftTrue");
+  console.log("leftTrue");
   return true;
 }
 
@@ -185,11 +185,11 @@ function printBoardAndTarget(arr, target) {
   var alphabet = "ABCDEGHIJ"
 
   var verticalIndex = linearSearch(target[0], alphabet);
-  console.log(verticalIndex);
+  // console.log(verticalIndex);
   var horizontalIndex = Number(target[1]);
-  console.log(horizontalIndex);
+  // console.log(horizontalIndex);
   var arrayIndexTarget = arr[horizontalIndex][verticalIndex];
-  console.log("-> " + arrayIndexTarget);
+  // console.log("-> " + arrayIndexTarget);
 
   if (arrayIndexTarget !== "") {
     return "X " + " you've hit -> " + arrayIndexTarget;
